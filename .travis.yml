@@ -1,0 +1,5 @@
+language: java
+script:
+  - cat ~/.bash_*
+  - javac Helloworld.java
+  - java Helloworld
