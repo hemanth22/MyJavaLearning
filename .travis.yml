@@ -5,3 +5,7 @@ script:
   - ls -la ${HOME}/.bash_profile.d/
   - javac Helloworld.java
   - java Helloworld
+  - whatis java
+  - whatis javac
+  - whereis java
+  - whereis javac
