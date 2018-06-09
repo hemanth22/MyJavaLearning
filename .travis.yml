@@ -1,5 +1,7 @@
 language: java
 script:
   - cat ~/.bash_*
+  - cat ${HOME}/.bash_profile.d/*.bash
+  - ls -la ${HOME}/.bash_profile.d/
   - javac Helloworld.java
   - java Helloworld
