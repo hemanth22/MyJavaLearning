@@ -1,4 +1,5 @@
-class HelloWorld
+package learnjava;
+public class HelloWorld
 {
 	public static void main(String h[])
 		{
