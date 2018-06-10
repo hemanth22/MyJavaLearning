@@ -19,13 +19,13 @@ script:
   - export cleanup=false
 
 # Run container detached
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac HelloWorld.java
-  - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . HelloWorld.java
+  - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac HelloWorld.java
+  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . HelloWorld.java
   - echo "Listing class files"
   - ls -la
   - echo "Output of java file"
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java HelloWorld
-  - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.HelloWorld
+  - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java HelloWorld
+  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.HelloWorld
   #- docker run -it --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
 
 notifications:
