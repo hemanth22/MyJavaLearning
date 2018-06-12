@@ -1,4 +1,4 @@
-public class HelloWorld
+public class JavProg
 {
 	public static void main(String h[])
 		{
