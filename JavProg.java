@@ -1,4 +1,5 @@
 class JavProg
+	//No Decalaration
 {
 	public static void main(String args[])
 	{
