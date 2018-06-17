@@ -4,4 +4,7 @@ public class JavProg
 		{
 		System.out.println("Hello World !");
 }
+	// no package declaration
+        public class ClassInDefaultPackage {
+        }
 }
