@@ -1,3 +1,4 @@
+package learnjava;
 class JavProg
 	//No Decalaration
 {
