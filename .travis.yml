@@ -27,6 +27,8 @@ script:
   - ls -la
   - echo "Output of java file"
   - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
+  - echo "Get packagaes info using javap"
+  - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
   #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java JavProg
   #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.HelloWorld
   #- docker run -it --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
