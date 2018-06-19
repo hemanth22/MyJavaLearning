@@ -1,10 +1,10 @@
-image: java:7
-# services:
-# - docker
+#image: java:7
+services:
+- docker
 
 test_script:
-- javac -d . JavProg.java
-- java learnjava.JavProg
-- javap learnjava.JavProg
+- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
+- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
+- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
 
 build: off
