@@ -1,1 +1,10 @@
 
+version: 2
+jobs:
+  build:
+    docker:
+      - image: java:7
+    steps:
+      - javac -d . JavProg.java
+      - java learnjava.JavProg
+      - javap learnjava.JavProg
