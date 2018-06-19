@@ -1,0 +1,10 @@
+image: java:7
+# services:
+# - docker
+
+test_script:
+- javac -d . JavProg.java
+- java learnjava.JavProg
+- javap learnjava.JavProg
+
+build: off
