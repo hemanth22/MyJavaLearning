@@ -1,10 +1,14 @@
-
 version: 2
 jobs:
   build:
     docker:
       - image: java:7
     steps:
-      - javac -d . JavProg.java
-      - java learnjava.JavProg
-      - javap learnjava.JavProg
+      - checkout
+      - run: echo "Executing java compiler command"
+      - run: javac -d . JavProg.java
+      - run: echo "Executing java classes"
+      - run: java learnjava.JavProg
+      - run: echo "Displaying class details"
+      - run: javap learnjava.JavProg
+      - run: echo "Java Testing completed."
