@@ -1,8 +1,10 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: java:7
+    docker: ubuntu:14.04
+machine:
+  services:
+    - docker
     steps:
       - checkout
       - run: echo "Executing java compiler command"
