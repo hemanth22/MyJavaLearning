@@ -8,9 +8,9 @@ machine:
     steps:
       - checkout
       - run: echo "Executing java compiler command"
-      - run: javac -d . JavProg.java
+      - run: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
       - run: echo "Executing java classes"
-      - run: java learnjava.JavProg
+      - run: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
       - run: echo "Displaying class details"
-      - run: javap learnjava.JavProg
+      - run: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
       - run: echo "Java Testing completed."
