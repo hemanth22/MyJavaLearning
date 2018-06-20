@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    docker: ubuntu:14.04
+    docker: java:7
 machine:
   services:
     - docker
