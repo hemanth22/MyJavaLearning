@@ -1,10 +1,8 @@
 version: 2
 jobs:
   build:
-    docker: docker:latest
-machine:
-  services:
-    - docker
+    docker:
+      - image: docker:latest
     steps:
       - checkout
       - run: echo "Executing java compiler command"
