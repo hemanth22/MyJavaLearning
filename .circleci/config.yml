@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:latest
+    steps:
+      - checkout
+      - run: echo "Executing java compiler command"
+      - run: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
+      - run: echo "Executing java classes"
+      - run: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
+      - run: echo "Displaying class details"
+      - run: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
+      - run: echo "Java Testing completed."
