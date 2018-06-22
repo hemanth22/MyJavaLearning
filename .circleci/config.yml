@@ -5,18 +5,28 @@ jobs:
       - image: docker:17.05.0-ce-git
     steps:
       - checkout
+            
+      - run:
+          name: Pulling java docker.
+          command: |
+            set -e
+            docker pull java:7
+      
       - run:
           name: Create class file using java docker.
           command: |
+            set -e
             docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
             
       - run:
           name: Compiling and Executing java class files using java docker.
           command: |
+            set -e
             docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
             
             
       - run:
           name: Displaying java class.
           command: |
+            set -e
             docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
