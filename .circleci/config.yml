@@ -6,11 +6,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Pulling java docker
-          command: |
-            docker pull java:7
-            
-      - run:
           name: Create class file using java docker.
           command: |
             docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
