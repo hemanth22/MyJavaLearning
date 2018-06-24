@@ -3,9 +3,12 @@ jobs:
      build:
        working_directory: /app
        docker:
-         - image: docker:17.05.0-ce-git
+        - image: docker:17.03.0-ce
+         #- image: docker:17.05.0-ce-git
        steps:
          - checkout
+         #- setup_remote_docker:
+          #  version: 17.05.0-ce
          - run:
              name: Pulling java docker.
              command: |
