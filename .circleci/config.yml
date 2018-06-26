@@ -6,38 +6,19 @@ jobs:
       - image: docker:17.05.0-ce-git
     steps:
       - checkout
-      - setup_remote_docker
       - run:
-          name: Install dependencies
+          name: Pulling java docker.
           command: |
-            apk add --no-cache \
-              py-pip=9.0.0-r1
-            pip install \
-              docker-compose==1.12.0 \
-              awscli==1.11.76
-      - restore_cache:
-          keys:
-            - v1-{{ .Branch }}
-          paths:
-            - /caches/app.tar
+            docker pull java:7
       - run:
-          name: Load Docker image layer cache
+          name: Create class file using java docker.
           command: |
-            set +o pipefail
-            docker load -i /caches/app.tar | true
-         - run:
-             name: Pulling java docker.
-             command: |
-               docker pull java:7
-         - run:
-             name: Create class file using java docker.
-             command: |
-               docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
-         - run:
-             name: Compiling and Executing java class files using java docker.
-             command: |
-               docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
-         - run:
-             name: Displaying java class.
-             command: |
-               docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
+            docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
+      - run:
+          name: Compiling and Executing java class files using java docker.
+          command: |
+            docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
+      - run:
+          name: Displaying java class.
+          command: |
+            docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
