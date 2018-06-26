@@ -1,0 +1,9 @@
+build:
+    environment:
+        docker: true
+            
+build:            
+  tests:
+     override:
+         - command: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
+           on_node: 1
