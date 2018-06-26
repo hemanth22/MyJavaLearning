@@ -6,4 +6,6 @@ build:
   tests:
      override:
          - command: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
+         - command: ls -la
            on_node: 1
+         
