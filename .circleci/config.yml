@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: ps aux | grep docker
-      - run: sudo docker ps
+      - run: docker ps -a
       - run:
           name: Pulling java docker.
           command: |
