@@ -12,4 +12,4 @@ build:
 checks:
     java:
         code_rating: true
-        duplication: true
+        duplication: false
