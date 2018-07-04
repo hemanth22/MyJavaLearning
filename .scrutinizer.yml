@@ -10,6 +10,6 @@ build:
             on_node: 1   
 
 checks:
-    php:
+    java:
         code_rating: true
         duplication: true
