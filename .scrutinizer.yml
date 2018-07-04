@@ -8,3 +8,8 @@ build:
           - command: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
           - command: docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
             on_node: 1   
+
+checks:
+    php:
+        code_rating: true
+        duplication: true
