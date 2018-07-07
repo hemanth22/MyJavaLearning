@@ -1,8 +1,4 @@
 language: java
-#script:
-#  - /usr/bin/javac Helloworld.java
-#  - /usr/bin/java Helloworld
-
 env:
   - container_id=${container_id:-$timestamp}
  
