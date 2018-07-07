@@ -6,29 +6,21 @@ services:
   - docker
 
 before_install:
-#pull the image from Docker Hub for the OS under test
   - docker pull java:7
 
 script:
-#create a random file to store the container
   - export container_id=$(date +%s)
   - export cleanup=false
 
 # Run container detached
   - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac JavProg.java
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . HelloWorld.java
   - echo "Listing class files"
   - ls -la
   - echo "Output of java file"
   - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
   - echo "Get packagaes info using javap"
   - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java JavProg
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.HelloWorld
-  #- docker run -it --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
-
+  
 notifications:
  slack:
    rooms:
