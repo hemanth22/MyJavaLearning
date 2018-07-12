@@ -1,39 +1,18 @@
-language: java
-#script:
-#  - /usr/bin/javac Helloworld.java
-#  - /usr/bin/java Helloworld
-
 env:
-  - container_id=${container_id:-$timestamp}
- 
-services:
-  - docker
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "On6cZPlcTLmIbALCYBbJ9vLKarosRNwr6jFljZ0JcY0WmIE2wUbO26c7NjVBiWtzkg3lWATibTZ2jgTLRVljJMJYGedEoCb2q0LBIqGy8XioZrj73hDVUI3EuDMplN0PDXF2jDXgoPoruAleVHLeMvk6I5iWUCzBwPD+5I9gZNmJ1CYe9IFO3DaTUSH1K5ze65z+PP4CUWTGbDUZULHXm94NReir4IwVhSYZhxn3IiiVyrkpXd86uwM/krVRY3uUVsawxf7BKmaVP4SQZEJBipEl8/szTTXzJP8gXcEyvuV3QnGBYSLl7ounoK2BLla91qGNFgdW7DYNavcW1MeQdYbHCuB2MLL4FwnBRHD2UKmIiiKa3eMR5l1ckW12w1Rx4tFEwz3r5i7n3t4BXBUpz46qYypfTB1J32fhtTO5asf6F/zdoZC42Cq/fBGGM7LRZoy+E9cJviTaP54aJ8LWVbC3EmIsIJHf+x9Dxj5EGjAeojjsws9oWVI/oVAecS/krkHYWZyVvgnt3nokX+zhqtpJSW/AaKM9lwzwZ0VHxanr8iY/MuvqmWVGw8EKtY2hJJoPx/xq0fSJKQBFLH73ilwpWa3eRmg57rFa5anJsEScHLcYwk9bZ5NFfFDEsLLXB1wSGpPKlYAczF7mj5Ny6YkCVa+MF8HD9VhMv7V5sX4="
 
 before_install:
-#pull the image from Docker Hub for the OS under test
-  - docker pull java:7
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 
-script:
-#create a random file to store the container
-  - export container_id=$(date +%s)
-  - export cleanup=false
-
-# Run container detached
-  - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . JavProg.java
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac JavProg.java
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javac -d . HelloWorld.java
-  - echo "Listing class files"
-  - ls -la
-  - echo "Output of java file"
-  - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.JavProg
-  - echo "Get packagaes info using javap"
-  - docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 javap learnjava.JavProg
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java JavProg
-  #- docker run --rm -v"$PWD":/usr/src/myapp -w /usr/src/myapp java:7 java learnjava.HelloWorld
-  #- docker run -it --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
-
-notifications:
- slack:
-   rooms:
-     - nothingorganization:GN1JzklSpbMyfZVWcS05U6a0#mygitrepos
+addons:
+  coverity_scan:
+    project:
+      name: "hemanth22/MyJavaLearning"
+      description: "My First Code Coverity Test"
+    notification_email: hemanth22hemu@gmail.com
+    build_command_prepend: ./configure
+    build_command: make
+    branch_pattern: coverity_scan
