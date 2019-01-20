@@ -6,9 +6,17 @@ jobs:
       - image: java:7
     steps:
       - checkout
-      - run: javac -d . JavProg.java
-      - run: java learnjava.JavProg
-      - run: javap learnjava.JavProg
+      - run: 
+          name: Compiling java program.
+          command: javac -d . JavProg.java
+
+      - run: 
+          name: Execute java class file.
+          command: java learnjava.JavProg
+
+      - run: 
+          name: Disassembles one or more class files.
+          command: javap learnjava.JavProg
      #- run:
      #    name: Pulling java docker.
      #    command: |
